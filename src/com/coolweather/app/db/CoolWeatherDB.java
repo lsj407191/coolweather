@@ -101,7 +101,7 @@ public class CoolWeatherDB {
 	}
 
 	/**
-	 * 从数据库读取某省下所有的城市的信息
+	 * 从数据库读取某省下所有的城市信息。
 	 */
 	public List<City> loadCities(int provinceId) {
 		List<City> list = new ArrayList<City>();
@@ -114,14 +114,14 @@ public class CoolWeatherDB {
 				city.setCityName(cursor.getString(cursor
 						.getColumnIndex("city_name")));
 				city.setCityCode(cursor.getString(cursor
-						.getColumnIndex("province_code")));
+						.getColumnIndex("city_code")));
 				city.setProvinceId(provinceId);
 				list.add(city);
 			} while (cursor.moveToNext());
 		}
 		return list;
 	}
-
+	
 	/**
 	 * 将County实例存储到数据库
 	 */
