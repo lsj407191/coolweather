@@ -2,6 +2,7 @@ package com.coolweather.app.activity;
 
 import com.coolweather.app.R;
 import com.coolweather.app.db.CoolWeatherDB;
+import com.coolweather.app.service.AutoUpdateService;
 import com.coolweather.app.util.HttpCallbackListener;
 import com.coolweather.app.util.HttpUtil;
 import com.coolweather.app.util.Utility;
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -92,8 +94,8 @@ public class WeatherActivity extends Activity {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.switch_city:
-				Intent intent = new Intent(WeatherActivity.this,
-						ChooseAreaActivity.class);
+				Intent intent = new Intent(WeatherActivity.this, ChooseAreaActivity.class);
+				Log.d("来到了么", "lai le ");
 				intent.putExtra("from_weather_activity", true);
 				startActivity(intent);
 				finish();
@@ -192,6 +194,8 @@ public class WeatherActivity extends Activity {
 		currentDateText.setText(prefs.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
+		Intent intent = new Intent(this, AutoUpdateService.class);
+		startService(intent);
 	}
 
 }
